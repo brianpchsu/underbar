@@ -330,6 +330,14 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    //Check if two array is identical
+    function arrayEqual(a, b){
+      for (var i = 0; i<a.length; i++){
+        if (a[i] !==b[i]) return false;
+      }
+      return true;
+    }
+
     var length = array.length;
     var shuffled = array.slice();
     var rand, temp;
@@ -342,7 +350,11 @@
       shuffled[rand] = temp;
 
     }
-    return shuffled;
+    if (arrayEqual(shuffled, array)){
+      return _.shuffle(shuffled);
+    } else {
+      return shuffled;
+    }
   };
 
 
